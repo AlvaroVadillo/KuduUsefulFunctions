@@ -1,16 +1,7 @@
 package org.kududb.examples.sample;
 
-import org.apache.kudu.ColumnSchema;
-import org.apache.kudu.Schema;
-import org.apache.kudu.Type;
 import org.apache.kudu.client.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
-/**
- *  Created by Luis B. on 16/11/16.
- */
 
 public class KuduInsert {
 
@@ -29,7 +20,7 @@ public class KuduInsert {
 
             KuduTable table = client.openTable(tableName);
             KuduSession session = client.newSession();
-            for (int i = 0; i < 50; i++) {
+            for (int i = 0; i < 50000; i++) {
                 Insert insert = table.newInsert();
                 PartialRow row = insert.getRow();
                 row.addInt(0, i);

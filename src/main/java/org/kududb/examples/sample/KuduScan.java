@@ -1,16 +1,12 @@
 package org.kududb.examples.sample;
 
-import org.apache.kudu.ColumnSchema;
-import org.apache.kudu.Schema;
-import org.apache.kudu.Type;
+
 import org.apache.kudu.client.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *  Created by Luis B. on 16/11/16.
- */
+
 
 public class KuduScan {
 
@@ -22,7 +18,8 @@ public class KuduScan {
         System.out.println("Will try to connect to Kudu master at " + KUDU_MASTER);
         System.out.println("Run with -DkuduMaster=myHost:port to override.");
         System.out.println("-----------------------------------------------");
-        String tableName = "Table_1";
+        String tableName = "Table_2";
+        Integer cont = 0;
         KuduClient client = new KuduClient.KuduClientBuilder(KUDU_MASTER).build();
 
         try {
@@ -39,9 +36,11 @@ public class KuduScan {
                 RowResultIterator results = scanner.nextRows();
                 while (results.hasNext()) {
                     RowResult result = results.next();
+                    cont++;
                     System.out.println(result.rowToString());
                 }
             }
+            System.out.println("Number of rows: " + cont);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
