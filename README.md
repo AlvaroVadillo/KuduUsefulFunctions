@@ -1,2 +1,0 @@
-# kudu-samples
-Probando kudu
